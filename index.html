@@ -90,8 +90,7 @@
           return result;
         }
         pop() {
-          let lastElement = this.ints.pop();
-          return lastElement;
+          return this.ints.pop();
         }
         push(int) {
           this.ints.push(int);
@@ -246,12 +245,17 @@
             ant.health -= 20;
           });
 
-          this.ants.filter((ant) => {
-            const shouldKeep = ant.health > 0;
-            if (!shouldKeep) {
-              this.ants.pop(!shouldKeep);
+          const remainingAnts = [];
+          let removedCount = 0;
+
+          this.ants.forEach(ant => {
+            if (ant.health <= 0) {
+              removedCount++
+            } else {
+              remainingAnts.push(ant)
             }
-          });
+          })
+          this.ants = remainingAnts;
 
           result =
             this.ants.length === 0
