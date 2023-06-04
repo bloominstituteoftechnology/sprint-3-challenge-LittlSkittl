@@ -241,6 +241,12 @@
         }
         work() {
           let result = "";
+          
+          result =
+            this.ants.length === 0
+              ? "No ants here. Did you work them to death?"
+              : `${this.ants.length} ants starting work!`;
+              
           this.ants.forEach((ant) => {
             ant.health -= 20;
           });
@@ -257,10 +263,6 @@
           })
           this.ants = remainingAnts;
 
-          result =
-            this.ants.length === 0
-              ? "No ants here. Did you work them to death?"
-              : `${this.ants.length} ants starting work!`;
           return result;
         }
         feed(name) {
